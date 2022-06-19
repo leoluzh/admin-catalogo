@@ -22,7 +22,7 @@
         <dependency>
             <groupId>com.lambdasys.admin.catalogo.domain</groupId>
             <artifactId>domain</artifactId>
-            <version>${version}</version>
+            <version>${project.parent.version}</version>
         </dependency>
 
     </dependencies>
