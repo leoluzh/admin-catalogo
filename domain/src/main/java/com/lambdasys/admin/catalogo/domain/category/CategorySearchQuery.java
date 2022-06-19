@@ -6,4 +6,14 @@ public record CategorySearchQuery(
         String terms ,
         String sort ,
         String direction ) {
+
+    public static CategorySearchQuery from(
+            final int page ,
+            final int perPage,
+            String terms,
+            String sort,
+            String direction ){
+        return new CategorySearchQuery(page,perPage,terms,sort,direction);
+    }
+
 }
