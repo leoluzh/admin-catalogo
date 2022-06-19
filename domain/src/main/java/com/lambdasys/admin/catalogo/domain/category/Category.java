@@ -2,14 +2,13 @@ package com.lambdasys.admin.catalogo.domain.category;
 
 import com.lambdasys.admin.catalogo.domain.AggregateRoot;
 import com.lambdasys.admin.catalogo.domain.validation.ValidationHandler;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 import java.time.Instant;
 import java.util.UUID;
 
 @Getter
-public class Category extends AggregateRoot<CategoryID> {
+public class Category extends AggregateRoot<CategoryID> implements Cloneable {
 
     private String name;
     private String description;
@@ -89,6 +88,19 @@ public class Category extends AggregateRoot<CategoryID> {
         this.updatedAt = Instant.now();
         return this;
 
+    }
+
+    public static Category clone(final Category category){
+        return category.clone();
+    }
+
+    @Override
+    public Category clone(){
+        try {
+            return (Category)super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 
