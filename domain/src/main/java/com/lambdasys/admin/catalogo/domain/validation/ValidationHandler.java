@@ -16,7 +16,7 @@ public interface ValidationHandler {
         return hasErrors() ? getErrors().get(0) : null;
     }
 
-    public interface Validation {
+    interface Validation {
         void validate();
     }
 
