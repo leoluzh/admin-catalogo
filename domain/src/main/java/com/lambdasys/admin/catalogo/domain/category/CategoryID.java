@@ -4,7 +4,6 @@ import com.lambdasys.admin.catalogo.domain.Identifier;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
-import java.util.Locale;
 import java.util.Objects;
 import java.util.UUID;
 
