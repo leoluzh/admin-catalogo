@@ -3,11 +3,13 @@ package com.lambdasys.admim.catalogo.application.category.create;
 import com.lambdasys.admin.catalogo.domain.category.Category;
 import com.lambdasys.admin.catalogo.domain.category.CategoryGateway;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Objects;
@@ -24,6 +26,12 @@ public class CreateCategoryUseCaseTest {
     @InjectMocks
     private DefaultCreateCategoryUseCase useCase;
 
+
+    @BeforeEach
+    void cleanUp(){
+        Mockito.reset(categoryGateway);
+    }
+
     //1. teste caminho feliz ...
     //2. teste passando propriedade invalida ...
     //3. teste criando categoria inativa ...
@@ -31,7 +39,7 @@ public class CreateCategoryUseCaseTest {
 
     @Test
     @Order(1)
-    public void givenAValidCommand_whenCallCreateCategory_shouldReturnCategoryId(){
+    public void given_a_valid_command_when_call_create_category_should_return_category_id(){
 
         final var expectedName = "Filmes" ;
         final var expectedDescription = "A categoria mais assistida";
@@ -62,7 +70,7 @@ public class CreateCategoryUseCaseTest {
 
     @Test
     @Order(2)
-    public void givenAnInvalidName_whenCallsCreateCategory_thenShouldReturnDomainException(){
+    public void given_an_invalid_name_when_calls_create_category_then_should_return_domain_exception(){
 
         final String expectedName = null;
         final var expectedDescription = "A categoria mais assistida";
@@ -84,7 +92,7 @@ public class CreateCategoryUseCaseTest {
 
     @Test
     @Order(3)
-    public void givenAValidCommandWithInactiveCategory_whenCallCreateCategory_shouldReturnInactiveCategoryId(){
+    public void given_a_valid_command_with_inactive_category_when_call_create_category_should_return_inactive_category_id(){
 
         final var expectedName = "Filmes" ;
         final var expectedDescription = "A categoria mais assistida";
@@ -115,7 +123,7 @@ public class CreateCategoryUseCaseTest {
 
     @Test
     @Order(4)
-    public void givenAValidCommand_whenGatewayThrowsRandomExeception_shouldReturnAnException(){
+    public void given_a_valid_command_when_gateway_throws_random_exception_should_return_an_exception(){
 
         final var expectedName = "Filmes" ;
         final var expectedDescription = "A categoria mais assistida";
