@@ -1,0 +1,33 @@
+server:
+  port: 8080
+  compression:
+    enabled: true
+    mime-type: text/html,text/xml,text/plain,text/css,text/javascript,application/javascript,application/json
+    min-response-size: 1024
+  undertow:
+    threads:
+      worker: 64
+      io: 4
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://${mysql.url}/${mysql.schema}?useSSL=true&serverTimezone=UTC=&characterEncoding=UTF-8
+    username: ${msyql.username}
+    password: ${mysql.password}
+  hikari:
+    auto-commit: false # para aumentar a perfomance
+    connection-timeout: 250 # configuracao em milisegundos. Ideal e manter baixo para que estoure timeout.
+    max-lifetime: 600000 # tempo maximo que conexao pode ficar aberta - 10 minutos.
+    maximum-pool-size: 20 # manter no maximo conexoes com o banco de dados. Ideal e manter baixo.
+    minimum-idle: 10
+    pool-name: master
+  jpa:
+    open-in-view: false #para aumentar a perfomance - funcao do open view e abrir conexao com banco de dados e transacao
+    show-sql: true #
+    hibernate:
+      dll-auto: none
+    properties:
+      "[hibernate.dialect]": org.hibernate.dialect.MySQL5InnoDBDialect
+      "[hibernate.generate_statistics]": true
+      "[hibernate.connection.provider_disables_autocommit]": true
