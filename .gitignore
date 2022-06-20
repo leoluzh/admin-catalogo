@@ -139,6 +139,7 @@ Temporary Items
 /domain/target/
 /application/target
 /infrastructure/target
+/infrastructure/data
 
 # Intellij
 .idea/
